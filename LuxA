@@ -1,0 +1,32 @@
+--Total Sales for Each Product
+SELECT 
+    ProductID, 
+    SUM(Amount) AS TotalSales
+FROM 
+    Sales
+GROUP BY 
+    ProductID;
+
+
+--Total Sales for Each Month
+SELECT 
+    DATE_TRUNC('month', SaleDate) AS SaleMonth, 
+    SUM(Amount) AS TotalSales
+FROM 
+    Sales
+GROUP BY 
+    SaleMonth
+ORDER BY 
+    SaleMonth;
+
+
+--Customers Who Made More Than 5 Purchases
+SELECT 
+    CustomerID, 
+    COUNT(SaleID) AS PurchaseCount
+FROM 
+    Sales
+GROUP BY 
+    CustomerID
+HAVING 
+    COUNT(SaleID) > 5;
